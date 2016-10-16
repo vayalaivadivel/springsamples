@@ -1,0 +1,7 @@
+## YAML Template.
+---
+server.port: 9013
+server.contextPath: /myweb
+spring.mvc.view:
+    prefix: /WEB-INF/jsp/
+    suffix: .jsp

@@ -1,0 +1,49 @@
+import org.gradle.api.artifacts.*
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+springBoot{
+    executable=true
+}
+
+jar {
+    baseName = 'grsprweb'
+    version =  '1.0.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies{
+    //It is common for both stand alone and web
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '1.4.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '1.4.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '1.4.1.RELEASE'
+    
+    //It is for web application
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-tomcat'
+    compile 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    
+    //compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    
+    compile 'javax.servlet:jstl'
+}
